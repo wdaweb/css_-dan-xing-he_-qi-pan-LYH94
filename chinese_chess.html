@@ -7,198 +7,315 @@
   <title>彈性盒_棋盤</title>
   <style>
     * {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-      box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: '標楷體';
+        box-sizing: border-box;
     }
 
     html,
     body {
-      height: 100%;
+        height: 100%;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .chessboard {
+      width: 380px;
+      height: 400px;
+      border: 1px solid transparent;
+      padding: 10px;
+      position: relative;
+    }
+
+    .chessboard::after {
+      content: '';
+      width: 360px;
+      height: 440px;
+      border: 1px solid black;
+      position: absolute;
+      top: -30px;
+      background-color: rgb(199, 140, 30);
+      z-index: -999;
     }
 
     .container {
-      width: 100%;
-      height: 100%;
-      margin: auto;
-    }
-
-    /* 彈性盒設定 */
-    .d-flex {
       display: flex;
-    }
-
-    .justify-content-center {
+      flex-wrap: wrap;
       justify-content: center;
     }
 
-    .justify-content-space-between {
-      justify-content: space-between;
+    .box {
+      width: 40px;
+      height: 40px;
+      border: 1px solid black;  
     }
 
-    .align-items-center {
+    .liner {
+      background: linear-gradient(45deg, transparent 0% 50%, black 50% 52%, transparent 52% 100%);
+    }
+
+    .liner2 {
+      background: linear-gradient(45deg, transparent 0% 50%, black 50% 52%, transparent 52% 100%);
+      transform: scaleX(-1);
+    }
+
+    .center {
+      width: 320px;
+      height: 40px;
+      border: 1px solid black;
+      flex-shrink: 1;
+      display: flex;
+      justify-content: space-around;
       align-items: center;
     }
 
-    .flex-direction-column {
-      flex-direction: column;
-    }
-
-    /* 文字 */
-    .text {
+    .center::before {
+      content: "楚河";
       font-size: 1.5rem;
-      font-family: '標楷體';
     }
 
-    /* 文字上到下書寫 */
-    .writing-mode {
-      writing-mode: vertical-lr;
+    .center::after {
+      content: "漢界";
+      font-size: 1.5rem;
     }
 
-    /* 棋盤 */
-    .chessboard {
-      width: 50%;
-      height: 80%;
-      border: 1px solid black;
-      margin: 2%;
+    .container2 {
+      width: 350px;
+      position: absolute;
+      top: -5px;
+      left: 15px;
       display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
 
-    /* 黑棋盤 */
-    .top {
-      width: 85%;
-      height: 40%;
-      border: 1px solid black;
-    }
-
-    /* 楚河漢界 */
-    .center {
-      width: 85%;
-      height: 10%;
-      border: 1px solid black;
-    }
-
-    /* 紅棋盤 */
-    .buttom {
-      width: 85%;
-      height: 40%;
-      border: 1px solid black;
-      color: red;
-    }
-
-    /* 棋子定位 */
-    .row {
-      width: 100%;
-      height: 20%;
-    }
-
-    /* 棋子 */
-    .chess {
-      width: 10%;
-      height: 100%;
+    /* 黑棋子 */
+    .chessblack {
       border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      background: #ffffff;
       border: 1px solid black;
+      text-align: center;
+      line-height: 30px;
+      font-size: 18pt;
+      font-family: "標楷體";
     }
 
-    /* 空棋子 */
-    .chessnone {
-      width: 10%;
-      height: 50%;
+    /* 紅棋子 */
+    .chessred {
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      color: red;
+      background: white;
+      border: 1px solid black;
+      font-size: 1.4rem;
+      font-family: "標楷體";
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .w-50 {
-      width: 50%;
+    /* 卒 */
+    .colbtop {
+      width: 350px;
+      position: absolute;
+      top: 130px;
+      left: 15px;
+      transform: translate(0%, -50%);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
     }
-  </style>
+    /* 包 */
+    .colbcenter {
+      width: 480px;
+      position: absolute;
+      top: 90px;
+      right: -50px;
+      transform: translate(0%, -50%);
+      display: flex;
+      justify-content: space-around;
+    }
+    /* 兵 */
+    .colrtop {
+      width: 350px;
+      position: absolute;
+      bottom: 120px;
+      left: 15px;
+      transform: translate(0%, -50%);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    /* 炮 */
+    .colrcenter {
+      width: 480px;
+      position: absolute;
+      bottom: 80px;
+      right: -50px;
+      transform: translate(0%, -50%);
+      display: flex;
+      justify-content: space-around;
+    }
+
+    /* 俥 */
+    .colrbottom{
+      width: 350px;
+      position: absolute;
+      bottom: 10px;
+      left: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .text {
+      writing-mode: vertical-lr;
+      font-size: 1.5rem;
+    }
+</style>
 </head>
 
-<body class="d-flex justify-content-center align-items-center">
-
-  <div class="container d-flex justify-content-center align-items-center">
-    <div class="text writing-mode">棋盤裡，車無輪，馬無鞍，叫聲將軍堤防堤防</div>
-
-    <!-- 棋盤 -->
-    <div class="chessboard d-flex flex-direction-column justify-content-center align-items-center">
-      <!-- 黑棋盤 -->
-      <div class="top d-flex flex-direction-column">
-        <!-- 棋子定位 -->
-        <div class="row d-flex justify-content-space-between align-items-center">
-          <div class="chess text d-flex justify-content-center align-items-center">車</div>
-          <div class="chess text d-flex justify-content-center align-items-center">馬</div>
-          <div class="chess text d-flex justify-content-center align-items-center">象</div>
-          <div class="chess text d-flex justify-content-center align-items-center">士</div>
-          <div class="chess text d-flex justify-content-center align-items-center">將</div>
-          <div class="chess text d-flex justify-content-center align-items-center">士</div>
-          <div class="chess text d-flex justify-content-center align-items-center">象</div>
-          <div class="chess text d-flex justify-content-center align-items-center">馬</div>
-          <div class="chess text d-flex justify-content-center align-items-center">車</div>
-        </div>
-        <div class="row"></div>
-        <div class="row d-flex justify-content-space-between align-items-center">
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-          <div class="chess text d-flex justify-content-center align-items-center">包</div>
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-          <div class="chess text d-flex justify-content-center align-items-center">包</div>
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-        </div>
-        <div class="row d-flex justify-content-space-between align-items-center">
-          <div class="chess text d-flex justify-content-center align-items-center">卒</div>
-          <div class="chess text d-flex justify-content-center align-items-center">卒</div>
-          <div class="chess text d-flex justify-content-center align-items-center">卒</div>
-          <div class="chess text d-flex justify-content-center align-items-center">卒</div>
-          <div class="chess text d-flex justify-content-center align-items-center">卒</div>
-        </div>
-        <div class="row"></div>
+<body>
+  <div class="text">棋盤裡，無車輪，馬無韁，叫聲將軍提防提防</div>
+  <div class="chessboard">
+      <div class="container">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box liner"></div>
+          <div class="box liner2"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
       </div>
-      <!-- 楚河、漢界 -->
-      <div class="center d-flex">
-        <div class="d-flex text w-50 justify-content-center align-items-center">楚河</div>
-        <div class="d-flex text w-50 justify-content-center align-items-center">漢界</div>
+      <div class="container">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box liner2"></div>
+          <div class="box liner"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
       </div>
-      <!-- 紅棋盤 -->
-      <div class="buttom d-flex flex-direction-column">
-        <div class="row"></div>
-        <div class="row d-flex justify-content-space-between align-items-center">
-          <div class="chess text d-flex justify-content-center align-items-center">兵</div>
-          <div class="chess text d-flex justify-content-center align-items-center">兵</div>
-          <div class="chess text d-flex justify-content-center align-items-center">兵</div>
-          <div class="chess text d-flex justify-content-center align-items-center">兵</div>
-          <div class="chess text d-flex justify-content-center align-items-center">兵</div>
-        </div>
-        <div class="row d-flex justify-content-space-between align-items-center">
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-          <div class="chess text d-flex justify-content-center align-items-center">炮</div>
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-          <div class="chess text d-flex justify-content-center align-items-center">炮</div>
-          <div class="chessnone text d-flex justify-content-center align-items-center"></div>
-        </div>
-        <div class="row"></div>
-        <div class="row d-flex justify-content-space-between align-items-center">
-          <div class="chess text d-flex justify-content-center align-items-center">俥</div>
-          <div class="chess text d-flex justify-content-center align-items-center">傌</div>
-          <div class="chess text d-flex justify-content-center align-items-center">相</div>
-          <div class="chess text d-flex justify-content-center align-items-center">仕</div>
-          <div class="chess text d-flex justify-content-center align-items-center">帥</div>
-          <div class="chess text d-flex justify-content-center align-items-center">仕</div>
-          <div class="chess text d-flex justify-content-center align-items-center">相</div>
-          <div class="chess text d-flex justify-content-center align-items-center">傌</div>
-          <div class="chess text d-flex justify-content-center align-items-center">俥</div>
-        </div>
+      <div class="container">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
       </div>
-    </div>
-    <div class="text writing-mode">圖畫裡，龍不吟，虎不嘯，小小書童可笑可笑</div>
+      <div class="container">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+      </div>
+      <div class="container">
+          <div class="center"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+      </div>
+      <div class="container">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+      </div>
+      <div class="container">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box liner"></div>
+          <div class="box liner2"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+      </div>
+      <div class="container">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box liner2"></div>
+          <div class="box liner"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+      </div>
+      <div class="container2">
+          <div class="chessblack">車</div>
+          <div class="chessblack">馬</div>
+          <div class="chessblack">象</div>
+          <div class="chessblack">士</div>
+          <div class="chessblack">將</div>
+          <div class="chessblack">士</div>
+          <div class="chessblack">象</div>
+          <div class="chessblack">馬</div>
+          <div class="chessblack">車</div>
+      </div>
+      <div class="colrbottom">
+          <div class="chessred">俥</div>
+          <div class="chessred">傌</div>
+          <div class="chessred">相</div>
+          <div class="chessred">仕</div>
+          <div class="chessred">帥</div>
+          <div class="chessred">仕</div>
+          <div class="chessred">相</div>
+          <div class="chessred">傌</div>
+          <div class="chessred">俥</div>
+      </div>
+      <div class="colrtop">
+          <div class="chessred">兵</div>
+          <div class="chessred">兵</div>
+          <div class="chessred">兵</div>
+          <div class="chessred">兵</div>
+          <div class="chessred">兵</div>
+      </div>
+      <div class="colbtop">
+          <div class="chessblack">卒</div>
+          <div class="chessblack">卒</div>
+          <div class="chessblack">卒</div>
+          <div class="chessblack">卒</div>
+          <div class="chessblack">卒</div>
+      </div>
+      <div class="colbcenter">
+          <div class="chessblack">包</div>
+          <div class="chessblack">包</div>
+      </div>
+      <div class="colrcenter">
+          <div class="chessred">炮</div>
+          <div class="chessred">炮</div>
+      </div>
   </div>
-  </div>
+  <div class="text">圖畫裡，龍不吟，虎不嘯，小小書童可笑可笑</div>
 </body>
 
 </html>
